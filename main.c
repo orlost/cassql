@@ -6,7 +6,8 @@ struct token{
 };
 
 struct tokenlist{
-	struct token tokens[1000];
+	struct token tokens[10000];
+	struct token unique[1000];
 };
 
 void main(int argc, char **argv){
