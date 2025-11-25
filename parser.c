@@ -1,5 +1,6 @@
 #pragma once
 #include <stdio.h>
+#include <string.h>
 #include "structs.h"
 
 void scanner(tokenlist *tokenlist, char *string){
@@ -32,6 +33,60 @@ void scanner(tokenlist *tokenlist, char *string){
 		printf("%s ",tokenlist->tokens[l].name);
 	}
 	printf("\n");
+}
+
+int typereturn(token *token){
+	if (strcmp(token->name,"CREATE")){
+		return CREATE;
+	}
+	if (strcmp(token->name,"DROP")){
+		return DROP;
+	}
+	if (strcmp(token->name,"ALTER")){
+		return ALTER;
+	}
+	if (strcmp(token->name,"DB")){
+		return DB;
+	}
+	if (strcmp(token->name,"TABLE")){
+		return TABLE;
+	}
+	if (strcmp(token->name,"ROW")){
+		return ROW;
+	}
+	if (strcmp(token->name,"COLUMN")){
+		return COLUMN;
+	}
+	if (strcmp(token->name,"ADD")){
+		return ADD;
+	}
+	if (strcmp(token->name,"SELECT")){
+		return SELECT;
+	}
+	if (strcmp(token->name,"UPDATE")){
+		return UPDATE;
+	}
+	if (strcmp(token->name,"INSERT")){
+		return INSERT;
+	}
+	if (strcmp(token->name,"DELETE")){
+		return DELETE;
+	}
+	if (strcmp(token->name,"FROM")){
+		return FROM;
+	}
+	if (strcmp(token->name,"WHERE")){
+		return WHERE;
+	}
+	if (strcmp(token->name,"*")){
+		return ASTERISK;
+	}
+	if (strcmp(token->name,";")){
+		return SEMICOLON;
+	}
+	if (strcmp(token->name,"=")){
+		return EQUALS;
+	}
 }
 
 void lexer(tokenlist *tokenlist, char *string){

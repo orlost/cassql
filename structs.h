@@ -1,7 +1,10 @@
 #pragma once
 
+enum tokentype {GENERIC, CREATE, DROP, ALTER, DB, TABLE, ROW, COLUMN, ADD, SELECT, UPDATE, INSERT, DELETE, FROM, WHERE, ASTERISK, SEMICOLON, EQUALS};
+
 typedef struct{
 	int id;
+	int type;
 	char name[20];
 } token;
 
@@ -11,8 +14,25 @@ typedef struct{
 } tokenlist;
 
 char keywordlist[100][100] = {
+	"CREATE",
+	"DROP",
+	"ALTER",
+	"DB",
+	"TABLE",
+	"ROW",
+	"COLUMN",
+
+	"ADD",
+
+
 	"SELECT",
 	"UPDATE",
-	"INSERT"	
+	"INSERT",
+	"DELETE",
+
+	"FROM",
+	"WHERE",
+	
+	"*"	
 };
 
