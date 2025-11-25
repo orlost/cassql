@@ -10,6 +10,10 @@ struct tokenlist{
 	struct token unique[1000];
 };
 
+void parser(struct tokenlist *tokenlist, char *string){
+
+}
+
 void main(int argc, char **argv){
 	printf("test\n");
 }
