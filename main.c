@@ -10,10 +10,38 @@ struct tokenlist{
 	struct token unique[1000];
 };
 
-void parser(struct tokenlist *tokenlist, char *string){
+char keywordlist[100][100] = {
+	"SELECT",
+	"UPDATE",
+	"INSERT"	
+};
 
+void parser(struct tokenlist *tokenlist, char *string){
+	int i,j,k,l;
+	char c;
+	char tokenbuffer[25];
+	j = 0;
+	for (i = 0;i < 100;i++){
+		c = string[i];
+		printf("%c",c);
+		tokenbuffer[j] = c;
+		if (c == "\0" || c == ";"){
+			i = 100;
+		} else if (c == " "){
+			printf("%s ",tokenbuffer);
+			for (j = 0; j < 25; j++){
+				tokenbuffer[j] == "\0";
+			}
+			j = 0;
+		}	
+		j++;
+	}
+	printf("\n");
 }
 
 void main(int argc, char **argv){
-	printf("test\n");
+	struct tokenlist tokenlist;
+	char buffer[100];
+	sprintf(buffer,"select * from table;");
+	parser(&tokenlist,buffer);
 }
