@@ -23,18 +23,19 @@ void parser(struct tokenlist *tokenlist, char *string){
 	j = 0;
 	for (i = 0;i < 100;i++){
 		c = string[i];
-		printf("%c",c);
+		printf("%c\n",c);
 		tokenbuffer[j] = c;
-		if (c == "\0" || c == ";"){
+		if (c == '\0' || c == ';'){
 			i = 100;
-		} else if (c == " "){
-			printf("%s ",tokenbuffer);
+		} else if (c == ' '){
+			printf("%s\n",tokenbuffer);
 			for (j = 0; j < 25; j++){
-				tokenbuffer[j] == "\0";
+				tokenbuffer[j] = '\0';
 			}
 			j = 0;
-		}	
-		j++;
+		} else {	
+			j++;
+		}
 	}
 	printf("\n");
 }
@@ -42,6 +43,10 @@ void parser(struct tokenlist *tokenlist, char *string){
 void main(int argc, char **argv){
 	struct tokenlist tokenlist;
 	char buffer[100];
+	int i;
+	for (i = 0; i < 100; i++){
+		buffer[0] = '\0';
+	}
 	sprintf(buffer,"select * from table;");
 	parser(&tokenlist,buffer);
 }
