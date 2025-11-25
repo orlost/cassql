@@ -1,14 +1,14 @@
 #include <stdio.h>
 
-struct token{
+typedef struct{
 	int id;
 	char name[20];
-};
+} token;
 
-struct tokenlist{
-	struct token tokens[10000];
-	struct token unique[1000];
-};
+typedef struct{
+	token tokens[10000];
+	token unique[1000];
+} tokenlist;
 
 char keywordlist[100][100] = {
 	"SELECT",
@@ -16,7 +16,7 @@ char keywordlist[100][100] = {
 	"INSERT"	
 };
 
-void scanner(struct tokenlist *tokenlist, char *string){
+void scanner(tokenlist *tokenlist, char *string){
 	int i,j,k,l;
 	char c;
 	char tokenbuffer[25];
@@ -29,8 +29,10 @@ void scanner(struct tokenlist *tokenlist, char *string){
 		if (c == '\0' || c == ';'){
 			i = 100;
 			sprintf(tokenlist->tokens[k].name,"%s",tokenbuffer);
+			tokenlist->tokens[k].id = k;
 		} else if (c == ' '){
 			sprintf(tokenlist->tokens[k].name,"%s",tokenbuffer);
+			tokenlist->tokens[k].id = k;
 			k++;
 			for (j = 0; j < 25; j++){
 				tokenbuffer[j] = '\0';
@@ -46,12 +48,17 @@ void scanner(struct tokenlist *tokenlist, char *string){
 	printf("\n");
 }
 
-void parser(struct tokenlist *tokenlist, char *string){
+void lexer(tokenlist *tokenlist, char *string){
+	
+}
+
+void parser(tokenlist *tokenlist, char *string){
 	scanner(tokenlist,string);
+	lexer(tokenlist,string);
 }
 
 void main(int argc, char **argv){
-	struct tokenlist tokenlist;
+	tokenlist tokenlist;
 	char buffer[100];
 	int i;
 	for (i = 0; i < 100; i++){
