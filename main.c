@@ -16,19 +16,22 @@ char keywordlist[100][100] = {
 	"INSERT"	
 };
 
-void parser(struct tokenlist *tokenlist, char *string){
+void scanner(struct tokenlist *tokenlist, char *string){
 	int i,j,k,l;
 	char c;
 	char tokenbuffer[25];
 	j = 0;
+	k = 0;
 	for (i = 0;i < 100;i++){
 		c = string[i];
 		printf("%c\n",c);
 		tokenbuffer[j] = c;
 		if (c == '\0' || c == ';'){
 			i = 100;
+			sprintf(tokenlist->tokens[k].name,"%s",tokenbuffer);
 		} else if (c == ' '){
-			printf("%s\n",tokenbuffer);
+			sprintf(tokenlist->tokens[k].name,"%s",tokenbuffer);
+			k++;
 			for (j = 0; j < 25; j++){
 				tokenbuffer[j] = '\0';
 			}
@@ -37,7 +40,14 @@ void parser(struct tokenlist *tokenlist, char *string){
 			j++;
 		}
 	}
+	for (l = 0; l <= k; l++){
+		printf("%s ",tokenlist->tokens[l].name);
+	}
 	printf("\n");
+}
+
+void parser(struct tokenlist *tokenlist, char *string){
+	scanner(tokenlist,string);
 }
 
 void main(int argc, char **argv){
