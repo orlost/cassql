@@ -80,25 +80,36 @@ void scanner(tokenlist *tokenlist, char *string){
 	k = 0;
 	for (i = 0;i < 100;i++){
 		c = string[i];
-		if (c == ';'){
-
-		} else {
+		if (c != ';'){
 			tokenbuffer[j] = c;
-		}
-		if (c == '\0' || c == ';'){
-			i = 100;
-			sprintf(tokenlist->tokens[k].name,"%s",tokenbuffer);
-			tokenlist->tokens[k].id = k;
-		} else if (c == ' '){
-			sprintf(tokenlist->tokens[k].name,"%s",tokenbuffer);
+			if (c == '\0'){
+				i = 100;
+				sprintf(tokenlist->tokens[k].name,"%s",tokenbuffer);
+				tokenlist->tokens[k].id = k;
+			} else if (c == ' '){
+				sprintf(tokenlist->tokens[k].name,"%s",tokenbuffer);
+				tokenlist->tokens[k].id = k;
+				k++;
+				for (j = 0; j < 25; j++){
+					tokenbuffer[j] = '\0';
+				}
+				j = 0;
+			} else {	
+				j++;
+			}
+		} else {
+			if (j){
+				sprintf(tokenlist->tokens[k].name,"%s",tokenbuffer);
+				tokenlist->tokens[k].id = k;
+				k++;
+			}
+			sprintf(tokenlist->tokens[k].name,"%c",';');
 			tokenlist->tokens[k].id = k;
 			k++;
 			for (j = 0; j < 25; j++){
 				tokenbuffer[j] = '\0';
 			}
 			j = 0;
-		} else {	
-			j++;
 		}
 	}
 	for (l = 0; l <= k; l++){

@@ -1,6 +1,17 @@
 #pragma once
 
-enum tokentype {GENERIC, CREATE, DROP, ALTER, DB, TABLE, ROW, COLUMN, ADD, SELECT, UPDATE, INSERT, DELETE, FROM, WHERE, ASTERISK, SEMICOLON, EQUALS};
+enum tokentype {
+	/*generic*/
+	GENERIC, 
+	/*manipulation*/
+	CREATE, DROP, ALTER, ADD,
+	/*structures*/
+	DB, TABLE, ROW, COLUMN,
+       	/*query*/	
+	SELECT, UPDATE, INSERT, DELETE, FROM, WHERE,
+       	/*symbols*/	
+	ASTERISK, SEMICOLON, EQUALS
+};
 
 typedef struct{
 	int id;
